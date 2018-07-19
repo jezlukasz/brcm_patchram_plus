@@ -1,0 +1,17 @@
+#!/bin/bash
+
+make clean
+
+export ARCH=arm
+
+OUTPUT_PATH="../output"
+
+TOOLCHAIN_PATH="$OUTPUT_PATH/host/bin"
+TOOLCHAIN_PREFIX="arm-buildroot-linux-musleabihf-"
+
+export CROSS_COMPILE="$TOOLCHAIN_PATH/$TOOLCHAIN_PREFIX"
+
+export LDFLAGS="-L $OUTPUT_PATH/target/lib -L $OUTPUT_PATH/target/usr/lib"
+export CFLAGS="-I $OUTPUT_PATH/staging/usr/include"
+
+make
